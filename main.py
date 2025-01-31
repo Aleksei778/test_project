@@ -32,6 +32,7 @@ def get_db_conn():
             port=DB_PORT,
             cursor_factory=RealDictCursor
         )
+        conn.autocommit = True
         return conn
     except Exception as e:
         print(f"Exception: {e}")
