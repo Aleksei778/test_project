@@ -3,6 +3,22 @@ from psycopg2.extras import RealDictCursor
 
 from config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 
+create_table_query = """
+CREATE TABLE IF NOT EXISTS ids (
+    pr SERIAL PRIMARY KEY,
+    id INTEGER
+    -- Add other columns as needed
+);
+"""
+
+insert_query = """
+INSERT INTO ids(id) VALUES(0);
+"""
+
+update_query = """
+UPDATE ids SET id = 10;
+"""
+
 def get_db_conn():
     try:
         conn = psycopg2.connect(
@@ -17,21 +33,21 @@ def get_db_conn():
     except Exception as e:
         print(f"Exception: {e}")
 
-def change_data(table_name: str):
+def change_data():
     conn = get_db_conn()
 
     try:
         cursor = conn.cursor()
-        query = f"UPDATE {table_name} SET id = 10"
+        
+        cursor.execute(create_table_query)
+        cursor.execute(insert_query)
+        cursor.execute(update_query)
 
-        cursor.execute(query)
-        result = cursor.fetchone()
-        print(result)
     except Exception as e:
         print(f"Ошибка: {e}")
 
 def main():
-    change_data("ids")
+    change_data()
 
 if __name__ == "__main__":
     main()
