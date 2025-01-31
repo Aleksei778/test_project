@@ -3,6 +3,9 @@ from psycopg2.extras import RealDictCursor
 
 from config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 
+print(DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER)
+
+
 create_table_query = """
 CREATE TABLE IF NOT EXISTS ids (
     pr SERIAL PRIMARY KEY,

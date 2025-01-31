@@ -25,7 +25,7 @@ def create_db_user():
         cursor.close()
         conn.close()
     except Exception as e:
-        print(f"Ошибка: {e}")
+        print(f"Ошибка в init_db: {e}")
 
 if __name__ == "__main__":
     create_db_user()
