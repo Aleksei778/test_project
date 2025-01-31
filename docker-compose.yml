@@ -32,6 +32,7 @@ services:
     build:
       context: .
     restart: unless-stopped
+    container_name: app
     volumes:
       - .:/app
     networks:
